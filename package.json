@@ -1,19 +1,20 @@
 {
-  "name": "simon_says_game",
-  "version": "1.0.0",
-  "description": "Simon says game",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [
-    "simon",
-    "says",
-    "game"
-  ],
-  "author": "fu",
-  "license": "ISC",
-  "dependencies": {
-    "express": "^5.1.0"
-  }
+    "name": "simon_says_game",
+    "version": "1.0.0",
+    "description": "Simon says game",
+    "main": "index.js",
+    "scripts": {
+        "start": "npm install && node index.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+        "simon",
+        "says",
+        "game"
+    ],
+    "author": "fu",
+    "license": "ISC",
+    "dependencies": {
+        "express": "^5.1.0"
+    }
 }
