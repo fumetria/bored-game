@@ -12,7 +12,7 @@
         "says",
         "game"
     ],
-    "author": "fu",
+    "author": "fumetria",
     "license": "ISC",
     "dependencies": {
         "express": "^5.1.0"
