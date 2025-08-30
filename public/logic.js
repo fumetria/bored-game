@@ -111,18 +111,15 @@ document.addEventListener("DOMContentLoaded", () => {
             maxRound = 20;
             gameDificulty = "hard";
             difficultyIndex.innerHTML = gameDificulty;
-            console.log(maxRound, " ", gameDificulty);
             return;
         }
         if (dificultySelected.toString().toLowerCase() === "medium") {
             maxRound = 15;
             gameDificulty = "medium";
             difficultyIndex.innerHTML = gameDificulty;
-            console.log(maxRound, " ", gameDificulty);
             return;
         }
         difficultyIndex.innerHTML = gameDificulty;
-        console.log(maxRound, " ", gameDificulty);
         return;
     }
     function checkUserInput() {
@@ -131,14 +128,12 @@ document.addEventListener("DOMContentLoaded", () => {
             cpuSequence[userSequence.length - 1]
         ) {
             incorrectSound.play();
-            console.log("Game finished!");
             let nScore = "";
             nScore = newScore(userName, score, date);
             scores.push(nScore);
             endGameMessage.innerHTML = "You lose!";
             gameStart = false;
             transitionSection(gameSection, endGameSection);
-            console.log(scores);
         } else {
             correctSound.play();
             score += 10;
@@ -148,7 +143,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }
             userTurn = false;
             if (round >= maxRound) {
-                console.log("Game finished!");
                 let nScore = "";
                 nScore = newScore(userName, score, date);
                 scores.push(nScore);
@@ -182,8 +176,6 @@ document.addEventListener("DOMContentLoaded", () => {
         roundIndex.innerText = round;
         cpuSequence.push(Math.ceil(Math.random() * 4));
         const endSequence = cpuSequence.length * 1000;
-        console.log("Round: ", round);
-        console.log("CPU: ", cpuSequence);
         displayCpuSequence();
         setTimeout(() => {
             userSequence = [];
@@ -201,7 +193,6 @@ document.addEventListener("DOMContentLoaded", () => {
         round = 0;
         score = 0;
         scoreIndex.innerText = score;
-        console.log("Game started!");
         newRound();
     }
 
@@ -265,7 +256,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }, 700);
             let userInput = event.target.id;
             userSequence.push(userInput);
-            console.log("USER: ", userSequence);
             checkUserInput();
         }
     });
