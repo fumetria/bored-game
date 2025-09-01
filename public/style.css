@@ -124,6 +124,15 @@ h1 {
     outline-style: solid;
 }
 
+#user-turn {
+    padding-inline: 10px;
+    border-radius: 5px;
+}
+
+.active {
+    background-color: blueviolet;
+}
+
 table {
     width: 100%;
     margin: 2rem 1rem;
@@ -138,15 +147,6 @@ thead {
     border-bottom: 1px solid white;
 }
 
-/* #user-name {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 3fr;
-    justify-items: center;
-    justify-content: center;
-    align-items: center;
-} */
-
 #board {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -154,9 +154,7 @@ thead {
     gap: 10px;
 }
 
-.active {
-    background-color: indigo;
-}
+
 
 header {
     position: relative;
@@ -199,8 +197,16 @@ footer {
 }
 
 #board>div {
-    width: 200px;
-    height: 200px;
+    width: 100px;
+    height: 100px;
+    border-radius: 5px;
+}
+
+@media (min-width: 768px) {
+    #board>div {
+        width: 200px;
+        height: 200px;
+    }
 }
 
 .color1 {
@@ -209,7 +215,7 @@ footer {
 }
 
 .color1.selected {
-    box-shadow: 0px 0px 15px red
+    /* box-shadow: 0px 0px 15px red */
 }
 
 .color2 {
@@ -218,7 +224,7 @@ footer {
 }
 
 .color2.selected {
-    box-shadow: 0px 0px 20px blue
+    /* box-shadow: 0px 0px 20px blue */
 }
 
 .color3 {
@@ -227,7 +233,7 @@ footer {
 }
 
 .color3.selected {
-    box-shadow: 0px 0px 20px green
+    /* box-shadow: 0px 0px 20px green */
 }
 
 .color4 {
@@ -236,7 +242,12 @@ footer {
 }
 
 .color4.selected {
-    box-shadow: 0px 0px 20px yellow
+    /* box-shadow: 0px 0px 20px yellow */
+}
+
+.selected {
+    opacity: 100%;
+    border: 0.5rem solid blueviolet;
 }
 
 .uppercase {
@@ -247,9 +258,7 @@ footer {
     text-transform: capitalize;
 }
 
-.selected {
-    opacity: 100%;
-}
+
 
 #end-game {
     text-align: center;
