@@ -12,6 +12,7 @@
         "says",
         "game"
     ],
+    "type": "module",
     "author": "fumetria",
     "license": "ISC",
     "dependencies": {
