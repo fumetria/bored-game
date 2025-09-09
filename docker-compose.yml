@@ -1,0 +1,19 @@
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=database
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_volume:/var/lib/postgresql/data
+  
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "8080:8080"
+
+volumes:
+  db_volume:
