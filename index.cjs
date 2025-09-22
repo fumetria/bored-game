@@ -1,13 +1,15 @@
+require('dotenv').config();
 const express = require("express");
 const app = express();
 const port = 4500;
 const dbQuerys = require("./database/db-querys.js");
 
+
 app.use(express.static("public"));
 app.use(express.json());
 
 app.post("/submit-score", (req, res) => {
-    console.log("submitting a score");
+    console.log("submitting a score...");
     console.log(req.body);
     try {
         dbQuerys.createScore(req.body);
@@ -21,6 +23,9 @@ app.get("/scores", async (req, res) => {
     console.log("getting scores...");
     try {
         const scores = await dbQuerys.getScores();
+        if (scores == null) {
+            throw error;
+        }
         console.log(scores);
         res.json(scores);
     } catch (error) {
@@ -33,5 +38,5 @@ app.get("/", (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log(`Game running on port: ${port}`);
+    console.log(`Game running on port: ${process.env.APP_URL}`);
 });
