@@ -8,6 +8,7 @@ app.use(express.json());
 
 app.post("/submit-score", (req, res) => {
     console.log("submitting a score");
+    console.log(req.body);
     try {
         dbQuerys.createScore(req.body);
         res.json({ status: 201, received: req.body });
@@ -17,11 +18,11 @@ app.post("/submit-score", (req, res) => {
 })
 
 app.get("/scores", async (req, res) => {
-    console.log("getting socres...");
+    console.log("getting scores...");
     try {
         const scores = await dbQuerys.getScores();
         console.log(scores);
-        res.json({ status: 201, data: scores });
+        res.json(scores);
     } catch (error) {
         res.json({ status: 404, message: "Error getting data..." });
     }

@@ -77,15 +77,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /**
      * Get data from the game and returns new object newScore.
-     * @param {string} userName
-     * @param {string} userScore
      * @param {string} date
+     * @param {string} userName
+     * @param {string} difficulty
+     * @param {int} level
+     * @param {int} userScore
      * @returns {Object}
      */
-    function newScore(userName, userScore, date) {
+    function newScore(date, userName, difficulty, level, userScore) {
         let newScore = {
-            create_at: date,
-            user: userName,
+            date: date,
+            player: userName,
+            difficulty: difficulty,
+            level: level,
             score: userScore,
         };
         return newScore;
@@ -122,14 +126,24 @@ document.addEventListener("DOMContentLoaded", () => {
         difficultyIndex.innerHTML = gameDificulty;
         return;
     }
-    function checkUserInput() {
+    async function checkUserInput() {
         if (
             userSequence[userSequence.length - 1] !=
             cpuSequence[userSequence.length - 1]
         ) {
             incorrectSound.play();
             let nScore = "";
-            nScore = newScore(userName, score, date);
+            nScore = newScore(date, userName, gameDificulty, round, score);
+            let createScore = await fetch("http://localhost:4500/submit-score/",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(nScore),
+                }
+            );
+            console.log(nScore.status);
             scores.push(nScore);
             endGameMessage.innerHTML = "You lose!";
             gameStart = false;
@@ -144,7 +158,16 @@ document.addEventListener("DOMContentLoaded", () => {
             userTurn = false;
             if (round >= maxRound) {
                 let nScore = "";
-                nScore = newScore(userName, score, date);
+                nScore = newScore(date, userName, gameDificulty, round, score);
+                let createScore = await fetch("http://localhost:4500/submit-score/",
+                    {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(nScore),
+                    }
+                );
                 scores.push(nScore);
                 endGameMessage.innerHTML = "You Win!";
                 gameStart = false;
@@ -213,10 +236,27 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    async function showScore2() {
+        const scores = await fetch("http://localhost:4500/scores/");
+        console.log("Response: ", scores)
+        const jsonScores = await scores.json();
+        console.log(jsonScores);
+        for (let i = 0; i < jsonScores.length; i++) {
+            const userScore = jsonScores[i];
+            let tr = document.createElement("tr");
+            tr.innerHTML = `
+            <td>${userScore.date}</td>
+            <td>${userScore.player}</td>
+            <td>${userScore.score}</td>
+            `;
+            scoreData.appendChild(tr);
+        }
+    }
+
     //Listeners
     scoreBtn.addEventListener("click", () => {
         transitionSection(startSection, scoreSection);
-        showScore();
+        showScore2();
     });
 
     scoreBack.addEventListener("click", () => {

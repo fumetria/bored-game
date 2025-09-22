@@ -13,7 +13,7 @@ export async function createTables() {
    );
    `;
 
-        console.log(`Query: ${newTable.command}`);
+        console.log(`${newTable.columns} columns affected by query: ${newTable.command}.`);
         return;
     } catch (error) {
         console.log(error.message);
@@ -43,7 +43,7 @@ export async function createScore(score) {
             "level",
             "score"
         )}`;
-        console.log(`${newScore.count} affected with command ${newScore.command}.`);
+        console.log(`${newScore.count} row affected with command ${newScore.command}.`);
         return newScore;
     } catch (error) {
         console.log(`Error: ${error.message}`);
@@ -55,7 +55,7 @@ export async function getScores() {
         const scores = await sql`
         SELECT * FROM scores;
         `;
-        console.log(`${newScore.count} affected with command ${newScore.command}.`)
+        console.log(`${scores.count} result obtain with command ${scores.command}.`)
         return scores;
     } catch (error) {
         console.log(`Error: ${error.message}`);
