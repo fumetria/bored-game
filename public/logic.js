@@ -143,7 +143,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     body: JSON.stringify(nScore),
                 }
             );
-            console.log(nScore.status);
+            console.log("New score: ", nScore);
+            console.log(createScore.status);
             scores.push(nScore);
             endGameMessage.innerHTML = "You lose!";
             gameStart = false;
@@ -220,13 +221,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function showScore() {
+        console.log("Scores: ", scores);
         for (let i = 0; i < scores.length; i++) {
             const userScore = scores[i];
             let tr = document.createElement("tr");
             let tdDate = document.createElement("td");
-            tdDate.innerHTML = userScore.create_at;
+            tdDate.innerHTML = userScore.date;
             let tdName = document.createElement("td");
-            tdName.innerHTML = userScore.user;
+            tdName.innerHTML = userScore.player;
             let tdScore = document.createElement("td");
             tdScore.innerHTML = userScore.score;
             tr.appendChild(tdDate);
@@ -237,10 +239,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     async function showScore2() {
-        const scores = await fetch("http://localhost:4500/scores/");
-        console.log("Response: ", scores)
-        const jsonScores = await scores.json();
+        const scoresApi = await fetch("http://localhost:4500/scores/");
+        console.log("Response: ", scoresApi)
+        const jsonScores = await scoresApi.json();
         console.log(jsonScores);
+        console.log(jsonScores.status);
+        if (jsonScores.status === 404) {
+            showScore();
+            return;
+        }
         for (let i = 0; i < jsonScores.length; i++) {
             const userScore = jsonScores[i];
             let tr = document.createElement("tr");
