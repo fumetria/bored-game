@@ -46,7 +46,7 @@ export async function createScore(score) {
         console.log(`${newScore.count} row affected with command ${newScore.command}.`);
         return newScore;
     } catch (error) {
-        console.log(`Error: ${error.message}`);
+        console.log(`Error: something go wrong.`);
     }
 }
 
@@ -58,6 +58,6 @@ export async function getScores() {
         console.log(`${scores.count} result obtain with command ${scores.command}.`)
         return scores;
     } catch (error) {
-        console.log(`Error: ${error.message}`);
+        console.log(`Error: something go wrong.`);
     }
 }
