@@ -134,7 +134,7 @@ document.addEventListener("DOMContentLoaded", () => {
             incorrectSound.play();
             let nScore = "";
             nScore = newScore(date, userName, gameDificulty, round, score);
-            let createScore = await fetch("http://localhost:4500/submit-score/",
+            let createScore = await fetch("https://bored-game-weld.vercel.app/submit-score/",
                 {
                     method: "POST",
                     headers: {
@@ -160,7 +160,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (round >= maxRound) {
                 let nScore = "";
                 nScore = newScore(date, userName, gameDificulty, round, score);
-                let createScore = await fetch("http://localhost:4500/submit-score/",
+                let createScore = await fetch("http://bored-game-weld.vercel.app/submit-score/",
                     {
                         method: "POST",
                         headers: {
@@ -239,7 +239,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     async function showScore2() {
-        const scoresApi = await fetch("http://localhost:4500/scores/");
+        const scoresApi = await fetch("https://bored-game-weld.vercel.app/scores/");
         console.log("Response: ", scoresApi)
         const jsonScores = await scoresApi.json();
         console.log(jsonScores);
