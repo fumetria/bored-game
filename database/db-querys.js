@@ -36,13 +36,14 @@ export async function createScore(score) {
     try {
         const newScore = await sql`
     INSERT INTO scores ${sql(
-        score,
-        "date",
-        "player",
-        "difficulty",
-        "level",
-        "score"
-    )}`;
+            score,
+            "date",
+            "player",
+            "difficulty",
+            "level",
+            "score"
+        )}`;
+        console.log(`${newScore.count} affected with command ${newScore.command}.`);
         return newScore;
     } catch (error) {
         console.log(`Error: ${error.message}`);
@@ -54,6 +55,7 @@ export async function getScores() {
         const scores = await sql`
         SELECT * FROM scores;
         `;
+        console.log(`${newScore.count} affected with command ${newScore.command}.`)
         return scores;
     } catch (error) {
         console.log(`Error: ${error.message}`);
