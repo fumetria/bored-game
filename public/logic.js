@@ -160,7 +160,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (round >= maxRound) {
                 let nScore = "";
                 nScore = newScore(date, userName, gameDificulty, round, score);
-                let createScore = await fetch("http://bored-game-weld.vercel.app/submit-score/",
+                let createScore = await fetch("https://bored-game-weld.vercel.app/submit-score/",
                     {
                         method: "POST",
                         headers: {
